@@ -63,7 +63,7 @@ ITS_train_loader = DataLoader(
 
 
 ITS_test_loader = DataLoader(
-    dataset=RESIDE_Dataset(os.path.join(path, 'SOTS/indoor'), train=False), batch_size=1, shuffle=False)
+    dataset=RESIDE_Dataset(os.path.join(path, 'ITS_TEST/indoor'), train=False), batch_size=1, shuffle=False)
 
 OTS_test_loader = DataLoader(
-    dataset=RESIDE_Dataset(os.path.join(path, 'SOTS/outdoor'), train=False, format='.png'), batch_size=1, shuffle=False)
+    dataset=RESIDE_Dataset(os.path.join(path, 'OTS_TEST/outdoor'), train=False, format='.png'), batch_size=1, shuffle=False)

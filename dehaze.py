@@ -1,35 +1,3 @@
-# import argparse
-# import os
-
-# import numpy as np
-# import torch
-# import torchvision.transforms as tfs
-# import torchvision.utils as vutils
-# from PIL import Image
-# from tqdm import tqdm
-
-# from metrics import psnr, ssim
-# from models.MSHTransformer import MSHTransformer
-
-# parser = argparse.ArgumentParser()
-# parser.add_argument('-d', '--dataset_name', help='name of dataset', choices=['indoor', 'outdoor'],
-#                     default='indoor')
-# parser.add_argument('--save_dir', type=str, default='dehaze_images', help='dehaze images save path')
-# parser.add_argument('--save', action='store_true', help='save dehaze images')
-# opt = parser.parse_args()
-
-# dataset = opt.dataset_name
-
-# if opt.save:
-#     if not os.path.exists(opt.save_dir):
-#         os.mkdir(opt.save_dir)
-#     output_dir = os.path.join(opt.save_dir, dataset)
-#     print("pred_dir:", output_dir)
-#     if not os.path.exists(output_dir):
-#         os.mkdir(output_dir)
-
-# if dataset == 'indoor':
-#     haze_dir = 'data/SOTS/indoor/hazy/'
 import argparse
 import os
 
@@ -61,13 +29,13 @@ if opt.save:
         os.mkdir(output_dir)
 
 if dataset == 'indoor':
-    haze_dir = 'data/SOTS/indoor/hazy/'
-    clear_dir = 'data/SOTS/indoor/clear/'
-    model_dir = 'trained_models/ITS.pk'
+    haze_dir = 'data/ITS_TEST/indoor/hazy/'
+    clear_dir = 'data/ITS_TEST/indoor/clear/'
+    model_dir = 'trained_models/its_train_MSHTransformer_2_10_default_clcr.pk'
 elif dataset == 'outdoor':
-    haze_dir = 'data/SOTS/outdoor/hazy/'
-    clear_dir = 'data/SOTS/outdoor/clear/'
-    model_dir = 'trained_models/OTS.pkl'
+    haze_dir = 'data/OTS_TEST/outdoor/hazy/'
+    clear_dir = 'data/OTS_TEST/outdoor/clear/'
+    model_dir = 'trained_models/ots_train_MSHTransformer_2_10_default_clcr.pk'
 
 device = 'cuda:0' if torch.cuda.is_available() else 'cpu'
 
@@ -75,7 +43,7 @@ device = 'cuda:0' if torch.cuda.is_available() else 'cpu'
 net = MSHTransformer(gps=2, blocks=10)
 
 # Load the model checkpoint
-ckp = torch.load(model_dir)
+ckp = torch.load(model_dir,weights_only=False)
 # Adjust for DataParallel if necessary
 if 'module.' in list(ckp['model'].keys())[0]:
     new_state_dict = {}

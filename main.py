@@ -9,7 +9,6 @@ from tensorboardX import SummaryWriter
 from torch import optim
 from torch.backends import cudnn
 
-from C2R import C2R
 from data_utils import *
 from models.MSHTransformer import *
 from option import model_name, log_dir
