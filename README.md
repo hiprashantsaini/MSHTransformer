@@ -199,11 +199,6 @@ MSHTransformer/
 - Monitor training progress through tensorboard logs
 
 
-
-## 📄 License
-
-This project is licensed under the MIT License - see the LICENSE file for details.
-
 ## 🙏 Acknowledgments
 
 - RESIDE dataset creators for comprehensive benchmarking resources
